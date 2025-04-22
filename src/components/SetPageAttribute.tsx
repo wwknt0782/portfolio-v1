@@ -6,10 +6,10 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 export default function SetPageAttribute(props?: string) {
-	const pathname = usePathname().split("/").filter(Boolean);
-	const page = `${pathname[0] ?? ""}` || "home"; //パスが/ならhomeに置換
+    const pathname = usePathname().split("/").filter(Boolean);
+    const page = `${pathname[0] ?? ""}` || "home"; //パスが/ならhomeに置換
 
-	useEffect(() => {
-		document.body.setAttribute("page", page); //page属性をbodyタグに追加
-	}, [page]);
+    useEffect(() => {
+        document.body.setAttribute("page", page); //page属性をbodyタグに追加
+    }, [page]);
 }

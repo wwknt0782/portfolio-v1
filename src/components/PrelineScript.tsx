@@ -19,28 +19,28 @@ window.VanillaCalendarPro = VanillaCalendarPro;
 
 // Preline UI
 async function loadPreline() {
-	return import("preline/dist/index.js");
+    return import("preline/dist/index.js");
 }
 
 export default function PrelineScript() {
-	useEffect(() => {
-		const initPreline = async () => {
-			await loadPreline();
-		};
+    useEffect(() => {
+        const initPreline = async () => {
+            await loadPreline();
+        };
 
-		initPreline();
-	}, []);
-	const path = usePathname();
-	useEffect(() => {
-		setTimeout(() => {
-			if (
-				window.HSStaticMethods &&
-				typeof window.HSStaticMethods.autoInit === "function"
-			) {
-				window.HSStaticMethods.autoInit();
-			}
-		}, 100);
-	}, [path]);
+        initPreline();
+    }, []);
+    const path = usePathname();
+    useEffect(() => {
+        setTimeout(() => {
+            if (
+                window.HSStaticMethods &&
+                typeof window.HSStaticMethods.autoInit === "function"
+            ) {
+                window.HSStaticMethods.autoInit();
+            }
+        }, 100);
+    }, [path]);
 
-	return null;
+    return null;
 }

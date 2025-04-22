@@ -11,20 +11,20 @@ import { create } from "zustand";
 //};
 
 type FormStore = {
-	data: FormData;
-	setData: (newData: Partial<FormData>) => void;
-	reset: () => void;
+    data: FormData;
+    setData: (newData: Partial<FormData>) => void;
+    reset: () => void;
 };
 
 export const useFormStore = create<FormStore>((set) => ({
-	//FormDataの初期値
-	data: { name: "", company: "", email: "", text: "" },
-	//FormDataへデータ保存
-	setData: (newData) =>
-		set((state) => ({ data: { ...state.data, ...newData } })),
-	//FormDataのリセット
-	reset: () =>
-		set({
-			data: { name: "", company: "", email: "", text: "" },
-		}),
+    //FormDataの初期値
+    data: { name: "", company: "", email: "", text: "" },
+    //FormDataへデータ保存
+    setData: (newData) =>
+        set((state) => ({ data: { ...state.data, ...newData } })),
+    //FormDataのリセット
+    reset: () =>
+        set({
+            data: { name: "", company: "", email: "", text: "" },
+        }),
 }));
