@@ -48,10 +48,5 @@
         "eslint-config-next": "15.2.5",
         "tailwindcss": "^4",
         "typescript": "^5"
-    },
-    "eslintConfig": {
-        "rules": {
-            "no-unused-vars": "off"
-        }
     }
 }
