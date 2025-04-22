@@ -1,0 +1,87 @@
+@import "tailwindcss";
+@import "preline/variants.css";
+@source "../node_modules/preline/dist/*.js";
+
+@tailwind utilities;
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    /*テーマ色　HOME*/
+    --color-home-primary: #2da7e0; /*みずいろ*/
+    --color-home-secondary: #fdfdfd; /*しろ*/
+    --color-home-text: #193b67; /*くろ*/
+    --color-home-dark-primary: #506190;
+    --color-home-dark-secondary: #353639;
+    --color-home-dark-text: #d6d6d6;
+
+    /*テーマ職　プロフィール*/
+    --color-profile-primary: #6577eb; /*むらさき*/
+    --color-profile-secondary: #fdfdfd; /*しろ*/
+    --color-profile-text: #193b67; /*くろ*/
+    --color-profile-dark-primary: #506190;
+    --color-profile-dark-secondary: #353639;
+    --color-profile-dark-text: #d6d6d6;
+
+    /*テーマ職　制作実績*/
+    --color-works-primary: #00aa82; /*みどり*/
+    --color-works-secondary: #fdfdfd; /*しろ*/
+    --color-works-text: #193b67; /*くろ*/
+    --color-works-dark-primary: #506190;
+    --color-works-dark-secondary: #353639;
+    --color-works-dark-text: #d6d6d6;
+
+    /*テーマ色　お問い合わせ*/
+    --color-contact-primary: #c566ce; /*ピンク*/
+    --color-contact-secondary: #fdfdfd; /*しろ*/
+    --color-contact-text: #193b67; /*くろ*/
+    --color-contact-dark-primary: #506190;
+    --color-contact-dark-secondary: #353639;
+    --color-contact-dark-text: #d6d6d6;
+
+    --bg-top: url(/public/sample.jpg);
+}
+
+body {
+    font-family: "Quicksand", "Zen Kaku Gothic Antique", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body[page="home"],
+.theme-404 {
+    --color-primary: var(--color-home-primary);
+    --color-secondary: var(--color-home-secondary);
+    --color-text: var(--color-home-text);
+
+    --color-dark-primary: var(--color-home-dark-primary);
+    --color-dark-secondary: var(--color-home-dark-secondary);
+    --color-dark-text: var(--color-home-dark-text);
+}
+body[page="profile"] {
+    --color-primary: var(--color-profile-primary);
+    --color-secondary: var(--color-profile-secondary);
+    --color-text: var(--color-profile-text);
+
+    --color-dark-primary: var(--color-profile-dark-primary);
+    --color-dark-secondary: var(--color-profile-dark-secondary);
+    --color-dark-text: var(--color-profile-dark-text);
+}
+body[page="works"] {
+    --color-primary: var(--color-works-primary);
+    --color-secondary: var(--color-works-secondary);
+    --color-text: var(--color-works-text);
+
+    --color-dark-primary: var(--color-works-dark-primary);
+    --color-dark-secondary: var(--color-works-dark-secondary);
+    --color-dark-text: var(--color-works-dark-text);
+}
+body[page="contact"] {
+    --color-primary: var(--color-contact-primary);
+    --color-secondary: var(--color-contact-secondary);
+    --color-text: var(--color-contact-text);
+
+    --color-dark-primary: var(--color-contact-dark-primary);
+    --color-dark-secondary: var(--color-contact-dark-secondary);
+    --color-dark-text: var(--color-contact-dark-text);
+}
