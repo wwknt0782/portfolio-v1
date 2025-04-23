@@ -22,6 +22,6 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
 }
 
-export const config = {
-    matcher: ["/", "/((?!_next|favicon.ico).*)"], // 静的ファイル除外
-};
+//export const config = {
+//    matcher: ["/", "/((?!_next|favicon.ico).*)"], // 静的ファイル除外
+//};
