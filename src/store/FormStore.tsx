@@ -18,7 +18,12 @@ type FormStore = {
 
 export const useFormStore = create<FormStore>((set) => ({
     //FormDataの初期値
-    data: { name: "", company: "", email: "", text: "" },
+    data: {
+        name: "",
+        company: "",
+        email: "",
+        text: "",
+    },
     //FormDataへデータ保存
     setData: (newData) =>
         set((state) => ({ data: { ...state.data, ...newData } })),

@@ -1,45 +1,67 @@
 //お問い合わせ内容確認ページ
 "use client";
 
-//import { POST } from "@/app/api/send/route";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import PageBackButton from "@/components/PageBackButton";
 import PageTitle from "@/components/PageTitle";
 import PageTransitionButton from "@/components/PageTransitionButton";
 import SetPageAttribute from "@/components/SetPageAttribute";
-//import ContactMain from "@/features/contact/ContactMain";
 import { useFormStore } from "@/store/FormStore";
-import Form from "next/form";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-    const { handleSubmit } = useForm({
-        defaultValues: { name: "", company: "", email: "", text: "" },
-    });
-    const { data } = useFormStore();
+    const [msg, setMsg] = useState("");
+    const router = useRouter();
+    const url = "http://localhost:3000/api/send"; //send APIのURL
+    const { data } = useFormStore(); //zustandに保存したデータを取得
+    SetPageAttribute(); //テーマカラーをセット
 
-    const onSubmit = async () => {
+    //送信ボタンが押されたらフォームデータを送信===================================================
+    const sendForm = async () => {
         try {
-            console.log("フォーム送信開始");
-
-            const response = await fetch("/api/send", {
+            //send APIにアクセスしてメール送信------------------------------------------------
+            const response = await fetch(url, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ sendTo: data.email }),
+                body: JSON.stringify({
+                    name: data.name,
+                    company: data.company,
+                    email: data.email,
+                    text: data.text,
+                }),
             });
-            console.log(data.email);
 
-            if (!response.ok) throw new Error("送信に失敗しました");
+            //異常終了(サーバーエラー)--------------------------------------------------------
+            if (!response.ok) {
+                setMsg(
+                    "フォームの送信に失敗しました。しばらく時間をあけてから，再度お試しください。"
+                );
+                throw new Error(
+                    "サーバーにエラーがあります: " + response.status
+                );
+            } //-----------------------------------------------------------------------------
 
-            console.log("フォーム送信成功");
-        } catch (err) {
-            console.error("フォーム送信エラー:", err);
+            //正常終了-----------------------------------------------------------
+            const result = await response.json();
+            console.log("送信結果: " + result);
+            setMsg(""); //エラーメッセージ削除
+            await router.push("/contact/complete"); //送信完了ページに遷移
+            //------------------------------------------------------------------
+        } catch (error) {
+            //異常終了(その他)---------------------------------------------------
+            setMsg(
+                "フォームの送信に失敗しました。しばらく時間をあけてから，再度お試しください。"
+            );
+            console.error(
+                "ネットワークまたはデータにエラーがあります: ",
+                error
+            ); //---------------------------------------------------------------
         }
     };
 
-    SetPageAttribute(); //テーマカラーをセット
     return (
         <>
             <Header />
@@ -54,6 +76,9 @@ export default function Home() {
                     text-left whitespace-nowrap"
                     >
                         <PageTitle title="contact" />
+                    </div>
+                    <div>
+                        <p className="text-red-600">{msg}</p>
                     </div>
 
                     <div className="flex flex-col items-center mx-auto w-50vw max-w-200">
@@ -127,17 +152,12 @@ export default function Home() {
                             {/*確認ボタン*/}
 
                             <div className="ml-5">
-                                <Form
-                                    action="/"
-                                    onSubmit={handleSubmit(onSubmit)}
-                                    noValidate
-                                >
-                                    <PageTransitionButton
-                                        type="submit"
-                                        buttonName="送信する"
-                                        theme="contact"
-                                    />
-                                </Form>
+                                <PageTransitionButton
+                                    type="button"
+                                    buttonName="送信する"
+                                    onClick={sendForm}
+                                    theme="contact"
+                                />
                             </div>
                         </div>
                     </div>

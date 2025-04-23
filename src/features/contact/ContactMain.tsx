@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Form from "next/form";
 import { useRouter } from "next/navigation";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import StoreData from "./StoreData";
 
 export default function ContactMain() {
     const { data, setData } = useFormStore();
@@ -20,10 +21,10 @@ export default function ContactMain() {
         formState: { errors },
     } = useForm({
         defaultValues: {
-            name: data.name,
-            company: data.company,
-            email: data.email,
-            text: data.text,
+            name: "山田 太郎", //data.name,
+            company: "", //data.company,
+            email: "wwknt0782@gmail.com", //data.email,
+            text: "お問い合わせ内容をここに書きます。", //data.text,
         },
         resolver: zodResolver(FormSchema), //zodバリデーション
     });
@@ -32,6 +33,7 @@ export default function ContactMain() {
     //フォームがSubmitされたらzustandでデータを保存して確認ページへ遷移----------------
     const onSubmit: SubmitHandler<FormData> = (newData) => {
         //SubmitHandlerはReact-hook-formの型指定
+        //StoreData(newData);
         setData(newData); //zustandでフォームデータ保存
         router.push("/contact/confirm"); //確認ページに遷移
     };
