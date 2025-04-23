@@ -33,9 +33,9 @@ export default function ProfileMain() {
                             <div className="">
                                 {/*情報*/}
                                 <div className="flex flex-row mt-3 relative">
-                                    <p className="w-43 text-4xl">渡邉 幹太</p>
+                                    <p className="w-43 text-4xl">{/*氏名*/}</p>
                                     <p className="pt-4.5 text-bold">
-                                        Watanabe Kanta
+                                        {/*name*/}
                                     </p>
                                     <span className="absolute top-8 border-b-9 border-[var(--color-primary)]/40 w-100">
                                         {" "}
@@ -45,25 +45,21 @@ export default function ProfileMain() {
                                     <p className="w-35 text-xs text-center">
                                         生年月日
                                     </p>
-                                    <p className="text-md">
-                                        1998年 1月 22日 (27歳)
-                                    </p>
+                                    <p className="text-md">{/*生年月日*/}</p>
                                 </div>
                                 <div className="flex flex-row items-center mt-1">
                                     <p className="w-35 text-xs text-center">
                                         メールアドレス
                                     </p>
                                     <p className="text-md">
-                                        wwknt0782@gmail.com
+                                        {/*メールアドレス*/}
                                     </p>
                                 </div>
                                 <div className="flex flex-row items-center mt-1">
                                     <p className="w-35 text-xs text-center">
                                         趣味・特技
                                     </p>
-                                    <p className="text-md">
-                                        イラスト，ゲーム(主にRPG)
-                                    </p>
+                                    <p className="text-md">{/*趣味・特技*/}</p>
                                 </div>
                             </div>
                         </div>
