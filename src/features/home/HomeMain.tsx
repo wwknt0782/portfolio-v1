@@ -19,7 +19,7 @@ export default function HomeMain() {
             >
                 <p>ご覧いただきありがとうございます。</p>
                 <div className="flex flex-col md:flex-row justify-center">
-                    <p className="mt-1">こちらは渡邉幹太の</p>
+                    <p className="mt-1">こちらは{/*氏名*/}の</p>
                     <p className="mt-1">ポートフォリオサイトです。</p>
                 </div>
 
