@@ -15,7 +15,6 @@ export default function ContactMain() {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm({
         defaultValues: { name: "", company: "", email: "", text: "" },
