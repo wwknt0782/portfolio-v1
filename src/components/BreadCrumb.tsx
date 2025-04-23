@@ -5,12 +5,6 @@ import { Home } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const pageNames: { [key: string]: string } = {
-    profile: "プロフィール",
-    works: "制作実績",
-    contact: "お問い合わせ",
-};
-
 export default function BreadCrumb() {
     const pathname = usePathname();
     const segments = pathname.split("/").filter(Boolean);

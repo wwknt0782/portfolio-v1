@@ -2,7 +2,6 @@
 import ArrowRight from "@/components/ArrowRight";
 import type { PageList } from "@/constants/PageList";
 import clsx from "clsx";
-import { ButtonHTMLAttributes } from "react";
 
 type props = {
     type: "submit" | "reset" | "button" | undefined;

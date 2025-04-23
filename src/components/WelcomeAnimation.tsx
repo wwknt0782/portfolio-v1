@@ -8,7 +8,6 @@ import { useEffect, useState } from "react";
 
 export default function WelcomeScreen() {
     const [show, setShow] = useState(false);
-    const pathname = usePathname();
 
     useEffect(() => {
         //初めてサイトを訪れた時にshowフラグをtrueにする

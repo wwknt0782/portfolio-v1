@@ -1,5 +1,4 @@
 import PageTitle from "@/components/PageTitle";
-import Link from "next/link";
 
 export default function ProfileMain() {
     return (

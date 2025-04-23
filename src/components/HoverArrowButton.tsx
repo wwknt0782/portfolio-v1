@@ -1,7 +1,6 @@
 // 右矢印ボタン>> ヘッダー用
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useRef } from "react";
 
 export default function HoverArrowButton(props: {
     buttonName: string;

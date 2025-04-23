@@ -5,7 +5,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
-export default function SetPageAttribute(props?: string) {
+export default function SetPageAttribute() {
     const pathname = usePathname().split("/").filter(Boolean);
     const page = `${pathname[0] ?? ""}` || "home"; //パスが/ならhomeに置換
 

@@ -1,7 +1,6 @@
 import ArrowLeft from "@/components/ArrowLeft";
 import type { PageList } from "@/constants/PageList";
 import clsx from "clsx";
-import Link from "next/link";
 
 export default function Button(props: {
     buttonName: string;

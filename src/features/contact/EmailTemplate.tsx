@@ -1,4 +1,4 @@
-import { Body, Head, Html, Text } from "@react-email/components";
+import { Html, Text } from "@react-email/components";
 import type * as React from "react";
 
 interface EmailTemplateProps {
