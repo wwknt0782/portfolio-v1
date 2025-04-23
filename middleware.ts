@@ -1,17 +1,19 @@
-// middleware.ts
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(request: NextRequest) {
-    const basicAuth = request.headers.get("authorization");
-    const USER = "ptfluser";
-    const PASS = "ptflpass";
+export const config = {
+    matcher: ["/:path*"],
+};
 
-    const expectedAuth =
-        "Basic " + Buffer.from(`${USER}:${PASS}`).toString("base64");
+export function middleware(req: NextRequest) {
+    const isLocalDevelopment = process.env.NODE_ENV === "development";
 
-    if (basicAuth !== expectedAuth) {
-        return new Response("認証が必要です", {
+    if (isLocalDevelopment || !process.env.BASIC_ID || !process.env.BASIC_PWD) {
+        return NextResponse.next();
+    }
+
+    const basicAuth = req.headers.get("authorization");
+    if (!basicAuth) {
+        return new Response("Authentication required", {
             status: 401,
             headers: {
                 "WWW-Authenticate": 'Basic realm="Secure Area"',
@@ -19,9 +21,16 @@ export function middleware(request: NextRequest) {
         });
     }
 
-    return NextResponse.next();
-}
+    try {
+        const authValue = basicAuth.split(" ")[1];
+        const [user, pwd] = atob(authValue).split(":");
 
-//export const config = {
-//    matcher: ["/", "/((?!_next|favicon.ico).*)"], // 静的ファイル除外
-//};
+        if (user === process.env.BASIC_ID && pwd === process.env.BASIC_PWD) {
+            return NextResponse.next();
+        }
+    } catch (e) {
+        return new Response("Invalid Authentication", { status: 400 });
+    }
+
+    return new Response("Unauthorized", { status: 401 });
+}
