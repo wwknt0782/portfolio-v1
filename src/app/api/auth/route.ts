@@ -2,6 +2,7 @@
 "use server";
 
 export async function GET(request: Request) {
+    console.log(request.json());
     return new Response("Auth Required", {
         status: 401,
         headers: {
