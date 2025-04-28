@@ -2,14 +2,6 @@
 import type { FormData } from "@/constants/FormSchema";
 import { create } from "zustand";
 
-//type FormData = {
-//	name: string;
-//	company: string;
-//	email: string;
-//	text: string;
-//  submit?: any
-//};
-
 type FormStore = {
     data: FormData;
     setData: (newData: Partial<FormData>) => void;

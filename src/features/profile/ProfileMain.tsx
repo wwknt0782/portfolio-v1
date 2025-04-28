@@ -3,6 +3,19 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function ProfileMain() {
+    //現在の年齢を取得する
+    const getAge = () => {
+        const today = new Date();
+        const todayYear = today.getFullYear();
+        if (today.getMonth() === 0 && today.getDate() < 22) {
+            const age = todayYear - 1998 - 1;
+            return age;
+        } else {
+            const age = todayYear - 1998;
+            return age;
+        }
+    };
+
     return (
         <main className="grow mt-16 overflow-auto">
             <div className="mx-4 md:px-10 lg:px-20">
@@ -23,58 +36,83 @@ export default function ProfileMain() {
                     <h2 className="text-2xl border-b-1 w-full text-left mb-5">
                         <span className="text-3xl">基</span>本情報
                     </h2>
-                    <p className="absolute left-28 top-[14.5px] text-sm">
+                    <p className="absolute left-28 top-[14.5px] text-sm whitespace-nowrap">
                         Basic infomation
                     </p>
                     {/*本文----------------------------------------------------------*/}
                     <div className="flex flex-col">
-                        <div className="md:flex flex-row">
-                            <div className="w-30 h-40 mx-auto bg-gray-400 hidden">
+                        <div className="flex flex-col md:flex-row justify-center items-center">
+                            <div className="w-30 h-40 mx-auto bg-gray-400 aspect-3/4">
                                 {/*写真*/}
                             </div>
-                            <div className="">
+                            <div className=" md:ml-10">
                                 {/*情報*/}
                                 <div className="flex flex-row mt-3 relative">
-                                    <p className="w-43 text-4xl">{/*氏名*/}</p>
-                                    <p className="pt-4.5 text-bold">
-                                        {/*name*/}
+                                    {/*縦線|*/}
+                                    <svg
+                                        className={`size-8 stroke-5 stroke-[var(--color-primary)] dark:stroke-[var(--color-dark-primary)] my-auto`}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <title> </title>
+                                        <line x1="3" y1="0" x2="3" y2="24" />
+                                    </svg>
+                                    <p className="w-43 text-4xl">渡邉 幹太</p>
+                                    <p className="pt-4.5 text-bold whitespace-nowrap">
+                                        WATANABE Kanta
                                     </p>
-                                    <span className="absolute top-8 border-b-9 border-[var(--color-primary)]/40 w-100">
-                                        {" "}
-                                    </span>
+                                    <span className="absolute border-b-1 border-[var(--color-primary)]/50 top-14 w-full"></span>
                                 </div>
-                                <div className="flex flex-row items-center mt-3">
-                                    <p className="w-35 text-xs text-center">
+                                <div className="flex flex-row items-center mt-8">
+                                    <p className="w-30 text-xs text-center bg-[var(--color-primary)]/10">
                                         生年月日
                                     </p>
-                                    <p className="text-md">{/*生年月日*/}</p>
+                                    <p className="text-sm ml-10">
+                                        1998年1月22日({getAge()}歳)
+                                    </p>
                                 </div>
-                                <div className="flex flex-row items-center mt-1">
-                                    <p className="w-35 text-xs text-center">
+                                <div className="flex flex-row items-center mt-2">
+                                    <p className="w-30 min-w-30 text-xs text-center bg-[var(--color-primary)]/10">
                                         メールアドレス
                                     </p>
-                                    <p className="text-md">
-                                        {/*メールアドレス*/}
+                                    <p className="text-sm ml-10">
+                                        wwknt0782@gmail.com
                                     </p>
                                 </div>
-                                <div className="flex flex-row items-center mt-1">
-                                    <p className="w-35 text-xs text-center">
+                                <div className="flex flex-row items-center mt-2">
+                                    <p className="w-30 min-w-30 text-xs text-center bg-[var(--color-primary)]/10">
                                         趣味・特技
                                     </p>
-                                    <p className="text-md">{/*趣味・特技*/}</p>
+                                    <p className="text-sm ml-10">
+                                        ドライブ/イラスト制作/模型製作(ガンプラ)/ゲーム(おもにドラゴンクエスト)
+                                    </p>
+                                </div>
+                                <div className="flex flex-row items-center mt-2">
+                                    <p className="w-30 min-w-30 text-xs text-center bg-[var(--color-primary)]/10">
+                                        資格等
+                                    </p>
+                                    <p className="text-sm ml-10">
+                                        普通自動車運転免許(第一種)/ITパスポート/電気主任技術者(第三種)/特殊無線技士(陸上)一級
+                                    </p>
                                 </div>
                             </div>
                         </div>
                         <div>
                             <p className="mt-6">
-                                おもにWeb制作全般の勉強をしています。制作時には特にサイトの見やすさ，わかりやすさ，操作の気持ちよさにこだわっています。また、学生時代から情報工学に関する学習も進めており、Pythonについては自己学習の上で研究のデータ処理に活用していました。卒業後はITパスポートの資格取得に加え，現在HTML5、CSS3，JavaScriptの学習を進めています。
+                                おもにWeb制作全般の勉強をしています。制作時には特にサイトの{" "}
+                                <strong>見やすさ</strong>，
+                                <strong>わかりやすさ</strong>，
+                                <strong>操作の気持ちよさ</strong>
+                                にこだわっています。また、学生時代から情報工学に関する学習も進めており、学部時代にはC言語，卒業研究ではPythonを用いたデータ処理をおこなっていました。卒業後も情報系の学習を進めており，ITパスポートの資格取得に加え，現在はHTML5、CSS3，JavaScriptの学習を進めています。本サイトはNext.js，TypeScriptを用いて制作しました。
                             </p>
                         </div>
                     </div>
                 </div>
 
                 {/*経歴===========================================================================================*/}
-                <div className="mt-30 relative">
+                <div className="mt-20 relative">
                     <h2 className=" text-2xl border-b-1 w-full text-left mb-5">
                         <span className=" text-3xl">経</span>歴
                     </h2>
@@ -82,11 +120,83 @@ export default function ProfileMain() {
                         Career
                     </p>
                     {/*本文----------------------------------------------------------*/}
-                    <div className="flex flex-col justify-center items-center">
-                        <div>{/*縦ライン*/}</div>
-                        <div>
-                            <div>{/*年*/}</div>
-                            <div>{/*概略*/}</div>
+                    <div className="flex flex-col justify-center">
+                        <p className="text-left">
+                            これまでの経歴を時系列で表示しています。
+                        </p>
+                        <div className="flex flex-row pt-10">
+                            <div>
+                                {/*縦ライン*/}
+                                <svg
+                                    className={`h-200 w-20 stroke-4 stroke-[var(--color-text)] dark:stroke-[var(--color-dark-text)] px-0 pt-3`}
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="80"
+                                    height="800"
+                                    viewBox="0 0 80 800"
+                                >
+                                    <title> </title>
+                                    <line x1="20" y1="3" x2="20" y2="800" />
+                                    {/*縦軸*/}
+                                    <line x1="0" y1="3" x2="200" y2="3" />
+                                    {/*補助線*/}
+                                    <line x1="0" y1="150" x2="200" y2="150" />
+                                    {/*補助線*/}
+                                    <line x1="0" y1="300" x2="200" y2="300" />
+                                    {/*補助線*/}
+                                    <line x1="0" y1="500" x2="200" y2="500" />
+                                    {/*補助線*/}
+                                    <line x1="0" y1="600" x2="200" y2="600" />
+                                    {/*補助線*/}
+                                    <line x1="0" y1="750" x2="200" y2="750" />
+                                    {/*補助線*/}
+                                </svg>
+                            </div>
+
+                            <div className="relative flex flex-col pl-3 w-full">
+                                <div className="absolute top-0">
+                                    <p className=" text-2xl">1998年</p>
+                                    <p className="text-md">岐阜県に生まれる</p>
+                                    <p className="text-xs">
+                                        小学校，中学校では野球部に所属し，練習に明け暮れる。
+                                    </p>
+                                </div>
+                                <div className="absolute top-36">
+                                    <p className=" text-2xl">2013年</p>
+                                    <p className="text-md">
+                                        岐阜県立可児高等学校へ入学
+                                    </p>
+                                    <p className="text-xs">
+                                        弓道部に所属し弓を引きまくる
+                                    </p>
+                                </div>
+                                <div className="absolute top-73">
+                                    <p className=" text-2xl">2016年</p>
+                                    <p className="text-md">
+                                        岐阜県立可児高等学校を卒業
+                                    </p>
+                                    <p className="text-md">
+                                        名古屋大学工学部へ入学
+                                    </p>
+                                </div>
+                                <div className="absolute top-122">
+                                    <p className=" text-2xl">2020年</p>
+                                    <p className="text-md">大学を卒業</p>
+                                    <p className="text-md">
+                                        名古屋大学大学院へ入学
+                                    </p>
+                                </div>
+                                <div className="absolute top-146">
+                                    <p className=" text-2xl">2022年</p>
+                                    <p className="text-md">大学院を卒業</p>
+                                    <p className="text-md">
+                                        エネルギー系企業へ就職
+                                    </p>
+                                </div>
+                                <div className="absolute top-183">
+                                    <p className=" text-2xl">2025年</p>
+                                    <p className="text-md">転職活動を開始</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
