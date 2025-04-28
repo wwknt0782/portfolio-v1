@@ -15,7 +15,8 @@ import { useRouter } from "next/navigation";
 export default function Home() {
     const [msg, setMsg] = useState("");
     const router = useRouter();
-    const url = "http://localhost:3000/api/send"; //send APIのURL
+    const url =
+        (process.env.NEXT_PUBLIC_BASE_URL as string) || "http://localhost:3000"; //send APIのURL
     const { data } = useFormStore(); //zustandに保存したデータを取得
     SetPageAttribute(); //テーマカラーをセット
 
