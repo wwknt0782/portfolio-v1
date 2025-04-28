@@ -36,12 +36,7 @@ export default function EmailTemplate(props: EmailTemplateProps) {
                     メールの内容についてのご確認，およびお心当たりがない場合は，お手数ですが
                 </Text>
                 <Text></Text>
-                <Text>
-                    <Link href="https://k-watanabe.com/contact">
-                        K-WATANABEお問い合わせフォーム
-                    </Link>
-                    または下記メールアドレスからご連絡ください。
-                </Text>
+                <Text>下記メールアドレスからご連絡ください。</Text>
                 <Text>
                     お問い合わせ用メールアドレス:{" "}
                     <Link href="mailto:wwknt0782@gmail.com">
