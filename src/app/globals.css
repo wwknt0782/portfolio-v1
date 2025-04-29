@@ -48,7 +48,7 @@ body {
     font-style: normal;
 }
 
-body[page="home"],
+div[data-page="home"],
 .theme-404 {
     --color-primary: var(--color-home-primary);
     --color-secondary: var(--color-home-secondary);
@@ -58,7 +58,7 @@ body[page="home"],
     --color-dark-secondary: var(--color-home-dark-secondary);
     --color-dark-text: var(--color-home-dark-text);
 }
-body[page="profile"] {
+div[data-page="profile"] {
     --color-primary: var(--color-profile-primary);
     --color-secondary: var(--color-profile-secondary);
     --color-text: var(--color-profile-text);
@@ -67,7 +67,7 @@ body[page="profile"] {
     --color-dark-secondary: var(--color-profile-dark-secondary);
     --color-dark-text: var(--color-profile-dark-text);
 }
-body[page="works"] {
+div[data-page="works"] {
     --color-primary: var(--color-works-primary);
     --color-secondary: var(--color-works-secondary);
     --color-text: var(--color-works-text);
@@ -76,7 +76,7 @@ body[page="works"] {
     --color-dark-secondary: var(--color-works-dark-secondary);
     --color-dark-text: var(--color-works-dark-text);
 }
-body[page="contact"] {
+div[data-page="contact"] {
     --color-primary: var(--color-contact-primary);
     --color-secondary: var(--color-contact-secondary);
     --color-text: var(--color-contact-text);

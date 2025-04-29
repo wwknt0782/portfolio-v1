@@ -6,7 +6,6 @@ import Header from "@/components/Header";
 import PageBackButton from "@/components/PageBackButton";
 import PageTitle from "@/components/PageTitle";
 import PageTransitionButton from "@/components/PageTransitionButton";
-import SetPageAttribute from "@/components/SetPageAttribute";
 import { useFormStore } from "@/store/FormStore";
 import Link from "next/link";
 import { useState } from "react";
@@ -19,7 +18,6 @@ export default function Home() {
         (process.env.NEXT_PUBLIC_BASE_URL as string) ||
         "http://localhost:3000/api/send"; //send APIのURL
     const { data } = useFormStore(); //zustandに保存したデータを取得
-    SetPageAttribute(); //テーマカラーをセット
 
     //送信ボタンが押されたらフォームデータを送信===================================================
     const sendForm = async () => {
@@ -140,7 +138,7 @@ export default function Home() {
                             </label>
                             <div>{data.text}</div>
                         </div>
-                        <div className="flex flex-row mt-10">
+                        <div className="flex flex-col-reverse md:flex-row gap-5 mt-10 ">
                             {/*ボタン*/}
                             {/*戻るボタン*/}
                             <div className="">
@@ -153,7 +151,7 @@ export default function Home() {
                             </div>
                             {/*確認ボタン*/}
 
-                            <div className="ml-5">
+                            <div className="">
                                 <PageTransitionButton
                                     type="button"
                                     buttonName="送信する"

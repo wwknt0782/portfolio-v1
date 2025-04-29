@@ -12,14 +12,14 @@ export default function HomeMain() {
             {/*プロフィール===========================================================================================*/}
             <div
                 className="h-[250px] 
-			bg-[var(--color-primary)]/30 dark:bg-[url('/sample.jpg')]
+			bg-[url('/top.svg')] dark:bg-[url('/top.svg')]
 			bg-cover bg-center bg-no-repeat
 			flex flex-col justify-center
 			text-center whitespace-nowrap"
             >
                 <p>ご覧いただきありがとうございます。</p>
                 <div className="flex flex-col md:flex-row justify-center">
-                    <p className="mt-1">こちらは{/*氏名*/}の</p>
+                    <p className="mt-1">こちらは渡邉幹太の</p>
                     <p className="mt-1">ポートフォリオサイトです。</p>
                 </div>
 

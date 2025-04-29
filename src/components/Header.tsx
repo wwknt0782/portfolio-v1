@@ -1,5 +1,3 @@
-"use client";
-
 import { ibmPlexMono } from "@/fonts/Fonts";
 import GlobalNav from "@/components/GlobalNav";
 import Link from "next/link";
@@ -16,11 +14,11 @@ export default function Header() {
                     <Link href={"/"}>
                         <h1
                             className={`${ibmPlexMono.className} 
-                            text-4xl  mr-5
+                            text-3xl  mr-5
                             text-[var(--color-primary)] dark:text-[var(--color-dark-primary)]
                             whitespace-nowrap uppercase`}
                         >
-                            K-Watanabe
+                            {"<"}K-Watanabe{"/>"}
                         </h1>
                     </Link>
                 </div>

@@ -4,10 +4,9 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import PageBackButton from "@/components/PageBackButton";
-import SetPageAttribute from "@/components/SetPageAttribute";
 import Link from "next/link";
+
 export default function Home() {
-    SetPageAttribute(); //テーマカラーをセット
     return (
         <div
             className="flex flex-col min-h-screen

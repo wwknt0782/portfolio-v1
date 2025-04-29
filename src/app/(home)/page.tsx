@@ -1,20 +1,20 @@
-//制作実績ページ
+//トップページ
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import WorksMain from "@/features/works/WorksMain";
+import HomeMain from "@/features/home/HomeMain";
 
 export default function Home() {
     return (
-        <>
+        <div>
             <Header />
             {/*ヘッダー*/}
 
-            <WorksMain />
+            <HomeMain />
             {/*メイン*/}
 
             <Footer />
             {/*フッター*/}
-        </>
+        </div>
     );
 }

@@ -14,7 +14,9 @@ export default function WorksMain() {
                 >
                     <PageTitle title="works" />
                     <p className="mt-8 ml-2">
-                        これまでに制作したコンテンツを掲載しています。
+                        これまでに制作したコンテンツを
+                        <br className="md:hidden" />
+                        掲載しています。
                     </p>
                 </div>
 
