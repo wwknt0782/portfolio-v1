@@ -4,7 +4,7 @@ import { WorksCard01, WorksCard02, WorksCard03 } from "./WorksCards";
 import { useState } from "react";
 import { ModalType, WorksModal } from "./WorksModals";
 import { useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
 export default function WorksMain() {
     const [isOpen, setIsOpen] = useState("close" as ModalType["open"]);

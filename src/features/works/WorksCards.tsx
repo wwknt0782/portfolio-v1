@@ -109,7 +109,7 @@ export const WorksCard02 = (props: WorksCardsType) => {
 };
 
 //制作実績カード3　データなし
-export const WorksCard03 = (props: WorksCardsType) => {
+export const WorksCard03 = (/*props: WorksCardsType*/) => {
     return (
         <button
             type="button"
