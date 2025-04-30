@@ -44,6 +44,12 @@ export default function ProfileMain() {
                         <div className="flex flex-col md:flex-row justify-center items-center">
                             <div className="w-30 h-40 mx-auto bg-gray-400 aspect-3/4">
                                 {/*写真*/}
+                                <Image
+                                    src="/icon.jpg"
+                                    alt="icon"
+                                    width={300}
+                                    height={400}
+                                ></Image>
                             </div>
                             <div className=" md:ml-10">
                                 {/*情報*/}
