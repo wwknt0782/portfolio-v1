@@ -13,7 +13,7 @@ export default function ContactMain() {
     const { data, setData } = useFormStore();
     const router = useRouter();
 
-    //React-hook-stateの設定-----------------------------------------------
+    //React-hook-formの設定-----------------------------------------------
     const {
         register,
         handleSubmit,
@@ -48,6 +48,9 @@ export default function ContactMain() {
                     text-left whitespace-nowrap"
                 >
                     <PageTitle title="contact" />
+                    <p className="mt-8 ml-2">
+                        下記フォームにお問い合わせ事項をご入力ください。
+                    </p>
                 </div>
 
                 <Form action={""} onSubmit={handleSubmit(onSubmit)} noValidate>

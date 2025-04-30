@@ -49,23 +49,19 @@ export default function HomeMain() {
                         <div className="max-w-[75rem] px-4 sm:px-6 lg:px-8 mx-auto">
                             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <Link
-                                    href="/works"
+                                    href="/works?from=home&to=modal01"
                                     className="flex flex-col grow"
                                 >
                                     <WorksCard01 />
                                 </Link>
                                 <Link
-                                    href="/works"
+                                    href="/works?from=home&to=modal02"
                                     className="flex flex-col grow"
                                 >
                                     <WorksCard02 />
                                 </Link>
-                                <Link
-                                    href="/works"
-                                    className="flex flex-col grow"
-                                >
-                                    <WorksCard03 />
-                                </Link>
+
+                                <WorksCard03 />
                             </div>
                         </div>
 

@@ -86,7 +86,7 @@ export default function ProfileMain() {
                                         趣味・特技
                                     </p>
                                     <p className="text-sm ml-10">
-                                        ドライブ/イラスト制作/模型製作(ガンプラ)/ゲーム(おもにドラゴンクエスト)
+                                        ドライブ/デザイン・イラスト制作/模型製作(ガンプラ)/ゲーム(おもにドラゴンクエスト)
                                     </p>
                                 </div>
                                 <div className="flex flex-row items-center mt-2">
@@ -124,8 +124,8 @@ export default function ProfileMain() {
                         <p className="text-left">
                             これまでの経歴を時系列で表示しています。
                         </p>
-                        <div className="flex flex-row pt-10">
-                            <div>
+                        <div className="flex flex-row justify-center pt-10">
+                            <div className="">
                                 {/*縦ライン*/}
                                 <svg
                                     className={`h-200 w-20 stroke-4 stroke-[var(--color-text)] dark:stroke-[var(--color-dark-text)] px-0 pt-3`}
@@ -149,52 +149,123 @@ export default function ProfileMain() {
                                     {/*補助線*/}
                                     <line x1="0" y1="750" x2="200" y2="750" />
                                     {/*補助線*/}
+                                    <line x1="20" y1="800" x2="30" y2="780" />
+                                    {/*矢印*/}
+                                    <line x1="20" y1="800" x2="10" y2="780" />
+                                    {/*矢印*/}
                                 </svg>
                             </div>
 
-                            <div className="relative flex flex-col pl-3 w-full">
+                            {/*テキスト*/}
+                            <div className="relative flex flex-col pl-3 md:pl-10 w-100">
                                 <div className="absolute top-0">
-                                    <p className=" text-2xl">1998年</p>
-                                    <p className="text-md">岐阜県に生まれる</p>
-                                    <p className="text-xs">
-                                        小学校，中学校では野球部に所属し，練習に明け暮れる。
+                                    <p className=" text-2xl text-[var(--color-primary)]">
+                                        1998年
                                     </p>
+                                    <div className="px-2 md:px-5 border-1 border-[var(--color-primary)]/30">
+                                        <p className="text-sm md:text-lg pb-1">
+                                            岐阜県に生まれる
+                                        </p>
+                                        <ul className="text-xs md:text-md list-disc pl-5">
+                                            <li>
+                                                小学校，中学校では野球部に所属する。
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div className="absolute top-36">
-                                    <p className=" text-2xl">2013年</p>
-                                    <p className="text-md">
-                                        岐阜県立可児高等学校へ入学
+                                    <p className=" text-2xl text-[var(--color-primary)]">
+                                        2013年
                                     </p>
-                                    <p className="text-xs">
-                                        弓道部に所属し弓を引きまくる
-                                    </p>
+                                    <div className="px-2 md:px-5 border-1 border-[var(--color-primary)]/30">
+                                        <p className="text-sm md:text-lg pb-1">
+                                            岐阜県立可児高等学校へ入学
+                                        </p>
+                                        <ul className="text-xs md:text-md list-disc pl-5">
+                                            <li>
+                                                家から少し離れた高校に入学したため，片道8kmを自転車で通うことになる。
+                                            </li>
+                                            <li>
+                                                袴にあこがれて弓道部に入部する。
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div className="absolute top-73">
-                                    <p className=" text-2xl">2016年</p>
-                                    <p className="text-md">
-                                        岐阜県立可児高等学校を卒業
+                                    <p className=" text-2xl text-[var(--color-primary)]">
+                                        2016年
                                     </p>
-                                    <p className="text-md">
-                                        名古屋大学工学部へ入学
-                                    </p>
+                                    <div className="px-2 md:px-5 border-1 border-[var(--color-primary)]/30">
+                                        <p className="text-sm md:text-lg">
+                                            岐阜県立可児高等学校を卒業
+                                        </p>
+                                        <p className="text-sm md:text-lg pb-1">
+                                            名古屋大学工学部へ入学
+                                        </p>
+                                        <ul className="text-xs md:text-md list-disc pl-5">
+                                            <li>
+                                                電気・情報系に興味を持ち，工学部に入学する。
+                                            </li>
+                                            <li>
+                                                C言語の講義で初めてプログラミングに触れる。
+                                            </li>
+                                            <li>
+                                                研究の一環でPythonを学び，データ処理に活用する。
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div className="absolute top-122">
-                                    <p className=" text-2xl">2020年</p>
-                                    <p className="text-md">大学を卒業</p>
-                                    <p className="text-md">
-                                        名古屋大学大学院へ入学
+                                    <p className=" text-2xl text-[var(--color-primary)]">
+                                        2020年
                                     </p>
+                                    <div className="px-2 md:px-5 border-1 border-[var(--color-primary)]/30">
+                                        <p className="text-sm md:text-lg">
+                                            大学を卒業
+                                        </p>
+                                        <p className="text-sm md:text-lg pb-1">
+                                            名古屋大学大学院へ入学
+                                        </p>
+                                    </div>
                                 </div>
                                 <div className="absolute top-146">
-                                    <p className=" text-2xl">2022年</p>
-                                    <p className="text-md">大学院を卒業</p>
-                                    <p className="text-md">
-                                        エネルギー系企業へ就職
+                                    <p className=" text-2xl text-[var(--color-primary)]">
+                                        2022年
                                     </p>
+                                    <div className="px-2 md:px-5 border-1 border-[var(--color-primary)]/30">
+                                        <p className="text-sm md:text-lg">
+                                            大学院を卒業
+                                        </p>
+                                        <p className="text-sm md:text-lg pb-1">
+                                            電力会社へ就職
+                                        </p>
+                                        <ul className="text-xs md:text-md list-disc pl-5">
+                                            <li>
+                                                研究で学んだ知識を生かしたいと思い，電力会社に就職する。
+                                            </li>
+                                            <li>
+                                                Web開発に興味を持ち，HTML/CSSを学びはじめる。
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div className="absolute top-183">
-                                    <p className=" text-2xl">2025年</p>
-                                    <p className="text-md">転職活動を開始</p>
+                                    <p className=" text-2xl text-[var(--color-primary)]">
+                                        2025年
+                                    </p>
+                                    <div className="px-2 md:px-5 border-1 border-[var(--color-primary)]/30">
+                                        <p className="text-sm md:text-lg pb-1">
+                                            転職活動を開始
+                                        </p>
+                                        <ul className="text-xs md:text-md list-disc pl-5">
+                                            <li>
+                                                Web開発を仕事にしたいと思うようになり，転職活動を開始する。
+                                            </li>
+                                            <li>
+                                                ポートフォリオサイトを制作する。
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>

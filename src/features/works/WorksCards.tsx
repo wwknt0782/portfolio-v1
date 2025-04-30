@@ -2,11 +2,16 @@ import ArrowRight from "@/components/ArrowRight";
 import Image from "next/image";
 //use Preline UI  "https://preline.co/docs/license.html"
 
+type WorksCardsType = {
+    onClick?: () => void;
+};
+
 //制作実績カード1　ポートフォリオ
-export const WorksCard01 = () => {
+export const WorksCard01 = (props: WorksCardsType) => {
     return (
         <button
             type="button"
+            onClick={props.onClick}
             className="group relative flex flex-col h-full text-left border border-works-text/20 shadow-md 
 						focus:outline-hidden focus:border-transparent focus:shadow-lg 
 						transition-all duration-300 
@@ -55,10 +60,11 @@ export const WorksCard01 = () => {
 };
 
 //制作実績カード2　サンプルサイト
-export const WorksCard02 = () => {
+export const WorksCard02 = (props: WorksCardsType) => {
     return (
         <button
             type="button"
+            onClick={props.onClick}
             className="group relative flex flex-col h-full text-left border border-works-text/20 shadow-md 
 						focus:outline-hidden focus:border-transparent focus:shadow-lg 
 						transition-all duration-300 
@@ -103,18 +109,16 @@ export const WorksCard02 = () => {
 };
 
 //制作実績カード3　データなし
-export const WorksCard03 = () => {
+export const WorksCard03 = (props: WorksCardsType) => {
     return (
         <button
             type="button"
-            className="group relative flex flex-col h-full text-left border border-works-text/20 shadow-md 
+            /*onClick={props.onClick}*/
+            className="{`${/*group cursor-pointer*/}`} relative flex flex-col h-full text-left border border-works-text/20 shadow-md 
 						focus:outline-hidden focus:border-transparent focus:shadow-lg 
 						transition-all duration-300 
-						rounded-md p-5 cursor-pointer"
+						rounded-md p-5 "
         >
-            <div className="absolute top-26 left-39 text-[var(--color-text)]/70">
-                <p>制作中...</p>
-            </div>
             <div
                 className="z-1 absolute flex justify-center items-center left-0 top-0 w-full h-full 
 						group-hover:bg-[var(--color-works-primary)]/60 transition-all duration-600 ease-out
