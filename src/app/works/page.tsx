@@ -3,7 +3,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import WorksMain from "@/features/works/WorksMain";
-import { divide } from "lodash";
 import { Suspense } from "react";
 
 export default function Home() {
