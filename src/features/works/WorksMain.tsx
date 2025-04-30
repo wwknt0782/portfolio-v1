@@ -1,7 +1,7 @@
 "use client";
 import PageTitle from "@/components/PageTitle";
 import { WorksCard01, WorksCard02, WorksCard03 } from "./WorksCards";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { ModalType, WorksModal } from "./WorksModals";
 import { useEffect } from "react";
 import { useSearchParams } from "next/navigation";
