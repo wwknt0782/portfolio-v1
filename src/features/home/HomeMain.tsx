@@ -135,7 +135,7 @@ export default function HomeMain() {
                                             2025.04.30
                                         </p>
 
-                                        <p className=" border-b-1">
+                                        <p className=" border-b-1 border-[var(--color-primary)]">
                                             サイトを公開しました。
                                         </p>
                                     </div>
