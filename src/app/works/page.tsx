@@ -3,6 +3,8 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import WorksMain from "@/features/works/WorksMain";
+import { divide } from "lodash";
+import { Suspense } from "react";
 
 export default function Home() {
     return (
@@ -10,9 +12,10 @@ export default function Home() {
             <Header />
             {/*ヘッダー*/}
 
-            <WorksMain />
-            {/*メイン*/}
-
+            <Suspense fallback={<div>Loading...</div>}>
+                <WorksMain />
+                {/*メイン 子でuseSearchParamsを呼び出しているのでSuspenseで囲む*/}
+            </Suspense>
             <Footer />
             {/*フッター*/}
         </>
