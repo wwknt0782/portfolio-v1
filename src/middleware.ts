@@ -2,7 +2,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export const config = {
-    matcher: ["/:path*"],
+    matcher: [`/((?!ogp.jpg|favicon.ico).*)`],
 };
 
 export function middleware(req: NextRequest) {

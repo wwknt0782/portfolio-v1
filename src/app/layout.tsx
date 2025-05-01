@@ -9,6 +9,14 @@ import { quicksand, zenKakuGothicAntique } from "@/fonts/Fonts"; //Googleフォ�
 export const metadata: Metadata = {
     title: "K-WATANABE",
     description: "This is the portfolio site of K-WATANABE",
+    openGraph: {
+        type: "website",
+        url: "https://k-watanabe.com",
+        title: "K-WATANABE",
+        description: "K-WATANABEのポートフォリオサイト",
+        siteName: "K-WATANABE",
+        images: [{ url: "https://k-watanabe.com/ogp.jpg" }],
+    },
 };
 
 export default function RootLayout({
