@@ -65,9 +65,11 @@ export default function ProfileMain() {
                                         <title> </title>
                                         <line x1="3" y1="0" x2="3" y2="24" />
                                     </svg>
-                                    <p className="w-43 text-4xl">渡邉 幹太</p>
+                                    <p className="w-43 text-4xl">
+                                        {process.env.NEXT_PUBLIC_MY_NAME}
+                                    </p>
                                     <p className="pt-4.5 text-bold whitespace-nowrap">
-                                        WATANABE Kanta
+                                        {process.env.NEXT_PUBLIC_MY_NAME_ALP}
                                     </p>
                                     <span className="absolute border-b-1 border-[var(--color-primary)]/50 top-14 w-full"></span>
                                 </div>
@@ -76,7 +78,8 @@ export default function ProfileMain() {
                                         生年月日
                                     </p>
                                     <p className="text-sm ml-10">
-                                        1998年1月22日({getAge()}歳)
+                                        {process.env.NEXT_PUBLIC_BIRTH}(
+                                        {getAge()}歳)
                                     </p>
                                 </div>
                                 <div className="flex flex-row items-center mt-2">
@@ -84,7 +87,7 @@ export default function ProfileMain() {
                                         メールアドレス
                                     </p>
                                     <p className="text-sm ml-10">
-                                        wwknt0782@gmail.com
+                                        {process.env.NEXT_PUBLIC_EMAIL}
                                     </p>
                                 </div>
                                 <div className="flex flex-row items-center mt-2">
@@ -100,7 +103,7 @@ export default function ProfileMain() {
                                         資格等
                                     </p>
                                     <p className="text-sm ml-10">
-                                        普通自動車運転免許(第一種)/ITパスポート/電気主任技術者(第三種)/特殊無線技士(陸上)一級
+                                        {process.env.NEXT_PUBLIC_SKILLS}
                                     </p>
                                 </div>
                             </div>
@@ -185,7 +188,7 @@ export default function ProfileMain() {
                                     </p>
                                     <div className="px-2 md:px-5 border-1 border-[var(--color-primary)]/30">
                                         <p className="text-sm md:text-lg pb-1">
-                                            岐阜県立可児高等学校へ入学
+                                            高校へ入学
                                         </p>
                                         <ul className="text-xs md:text-md list-disc pl-5">
                                             <li>
@@ -203,10 +206,10 @@ export default function ProfileMain() {
                                     </p>
                                     <div className="px-2 md:px-5 border-1 border-[var(--color-primary)]/30">
                                         <p className="text-sm md:text-lg">
-                                            岐阜県立可児高等学校を卒業
+                                            高校高校を卒業
                                         </p>
                                         <p className="text-sm md:text-lg pb-1">
-                                            名古屋大学工学部へ入学
+                                            大学の工学部へ入学
                                         </p>
                                         <ul className="text-xs md:text-md list-disc pl-5">
                                             <li>
@@ -230,7 +233,7 @@ export default function ProfileMain() {
                                             大学を卒業
                                         </p>
                                         <p className="text-sm md:text-lg pb-1">
-                                            名古屋大学大学院へ入学
+                                            大学院へ入学
                                         </p>
                                     </div>
                                 </div>
