@@ -110,10 +110,8 @@ export default function ProfileMain() {
                         </div>
                         <div>
                             <p className="mt-6">
-                                おもにWeb制作全般の勉強をしています。制作時には特にサイトの{" "}
-                                <strong>見やすさ</strong>，
-                                <strong>わかりやすさ</strong>，
-                                <strong>操作の気持ちよさ</strong>
+                                おもにWeb制作全般の勉強をしています。制作時には特にサイトの
+                                見やすさ， わかりやすさ， 操作の気持ちよさ
                                 にこだわっています。また、学生時代から情報工学に関する学習も進めており、学部時代にはC言語，卒業研究ではPythonを用いたデータ処理をおこなっていました。卒業後も情報系の学習を進めており，ITパスポートの資格取得に加え，現在はHTML5、CSS3，JavaScriptの学習を進めています。本サイトはNext.js，TypeScriptを用いて制作しました。
                             </p>
                         </div>
@@ -206,7 +204,7 @@ export default function ProfileMain() {
                                     </p>
                                     <div className="px-2 md:px-5 border-1 border-[var(--color-primary)]/30">
                                         <p className="text-sm md:text-lg">
-                                            高校高校を卒業
+                                            高校を卒業
                                         </p>
                                         <p className="text-sm md:text-lg pb-1">
                                             大学の工学部へ入学
