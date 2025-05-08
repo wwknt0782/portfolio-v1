@@ -5,7 +5,6 @@ import {
     WorksCard02,
     WorksCard03,
 } from "@/features/works/WorksCards";
-import Link from "next/link";
 import { AnimatedLink } from "@/components/PageTransition";
 
 export default function HomeMain() {

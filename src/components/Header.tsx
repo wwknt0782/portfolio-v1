@@ -1,6 +1,5 @@
 import { ibmPlexMono } from "@/fonts/Fonts";
 import GlobalNav from "@/components/GlobalNav";
-import Link from "next/link";
 import { AnimatedLink } from "./PageTransition";
 
 export default function Header() {
