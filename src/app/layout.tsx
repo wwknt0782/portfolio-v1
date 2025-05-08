@@ -5,6 +5,8 @@ import "~/globals.css";
 import PrelineScriptWrapper from "@/components/PrelineScriptWrapper"; //Preline UI
 //import WelcomeScreen from "@/components/WelcomeAnimation";
 import { quicksand, zenKakuGothicAntique } from "@/fonts/Fonts"; //Googleフォント
+import { PageTransitionAnimation } from "@/components/PageTransition";
+import WelcomeScreen from "@/components/WelcomeAnimation";
 
 export const metadata: Metadata = {
     title: "K-WATANABE",
@@ -32,7 +34,9 @@ export default function RootLayout({
             text-[var(--color-home-text)] dark:text-[var(--color-home-dark-text)]
             bg-[var(--color-home-secondary)] dark:bg-[var(--color-home-dark-secondary)]"
             >
-                {/*<WelcomeScreen>*/}
+                <WelcomeScreen />
+
+                <PageTransitionAnimation />
                 {children}
             </body>
 

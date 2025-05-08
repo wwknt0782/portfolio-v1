@@ -1,6 +1,7 @@
 // 右矢印ボタン>> ヘッダー用
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { AnimatedLink } from "./PageTransition";
 
 export default function HoverArrowButton(props: {
     buttonName: string;
@@ -13,7 +14,7 @@ export default function HoverArrowButton(props: {
             : "stroke-[var(--color-text)] dark:stroke-[var(--color-dark-text)]"; //今いるページの縦線だけテーマカラーにする
 
     return (
-        <Link
+        <AnimatedLink
             href={props.link}
             className="group flex flex-row pr-2 py-1 whitespace-nowrap"
         >
@@ -48,6 +49,6 @@ export default function HoverArrowButton(props: {
                 <line x1="14" y1="4" x2="24" y2="12" />
                 <line x1="24" y1="12" x2="14" y2="20" />
             </svg>
-        </Link>
+        </AnimatedLink>
     );
 }

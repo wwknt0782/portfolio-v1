@@ -1,6 +1,7 @@
 import { ibmPlexMono } from "@/fonts/Fonts";
 import GlobalNav from "@/components/GlobalNav";
 import Link from "next/link";
+import { AnimatedLink } from "./PageTransition";
 
 export default function Header() {
     return (
@@ -11,7 +12,7 @@ export default function Header() {
         >
             <nav className="flex flex-row items-center justify-between">
                 <div className="flex items-center h-16">
-                    <Link href={"/"}>
+                    <AnimatedLink href={"/"}>
                         <h1
                             className={`${ibmPlexMono.className} 
                             text-3xl  mr-5
@@ -20,7 +21,7 @@ export default function Header() {
                         >
                             {"<"}K-Watanabe{"/>"}
                         </h1>
-                    </Link>
+                    </AnimatedLink>
                 </div>
                 <GlobalNav />
             </nav>
