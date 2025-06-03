@@ -46,7 +46,7 @@
 
 1. `/contact` にアクセスするとフォームが表示される
 2. 情報を入力して確認ボタン押下 → 確認画面 `/contact/confirm` へ遷移
-3. `send` API を通じて送信処理 → `/contact/complete` へ遷移
+3. sendAPI を通じて送信処理 → `/contact/complete` へ遷移
 
 ※ バックエンド API も App Router 配下の `/api/send` などに実装されている。
 
