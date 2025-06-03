@@ -27,7 +27,7 @@ export default function HomeMain() {
                 </div>
 
                 {/*プロフィールリンク----------------------------------------*/}
-                <div className="mt-6">
+                <div className="mt-6 w-fit mx-auto">
                     <AnimatedLink href="/profile">
                         <PageTransitionButton
                             type="button"
