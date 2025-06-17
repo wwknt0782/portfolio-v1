@@ -15,7 +15,7 @@ import {
 
 //modalの型指定
 export type ModalType = {
-    open: "modal01" | "modal02" | "close";
+    open: "modal01" | "modal02" | "modal03" | "close";
     onCancel: () => void;
 };
 
@@ -99,6 +99,38 @@ const modalData = {
         languages: <>HTML5/CSS3</>,
         frameworks: <>なし</>,
         designs: <>なし</>,
+    },
+
+    //モーダル02 サンプルサイト----------------------------------------------------------------------
+    modal03: {
+        siteTitle: <>To-Do-List</>,
+        siteUrl: "https://to-do-list-pi-sepia-37.vercel.app/",
+        gitHubUrl: "https://github.com/wwknt0782/to-do-list",
+        imgSrc: "/img_todolist.jpg",
+        imgAlt: "To Do List Application",
+        tags: (
+            <h5 className="mt-3 text-sm text-[var(--color-contact-primary)]">
+                #Webアプリ
+            </h5>
+        ),
+        header: <>タスク管理アプリ</>,
+        text: (
+            <>
+                シンプルなタスク管理アプリです。
+                タスクの追加，編集，完了チェック，削除が可能です。
+                各タスクには期限と優先度を設定することができます。
+                ページをリロードしても情報が保存されます。
+            </>
+        ),
+        languages: <>TypeScript</>,
+        frameworks: (
+            <>
+                Next.js/React/
+                <br className="md:hidden" />
+                TailwindCSS
+            </>
+        ),
+        designs: <>Figma</>,
     },
 };
 //↑モーダル内テキストはここに記入==========================================================================================

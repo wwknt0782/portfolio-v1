@@ -23,6 +23,10 @@ export default function WorksMain() {
             setTimeout(() => {
                 setIsOpen("modal02");
             }, 100);
+        } else if (from === "home" && to === "modal03") {
+            setTimeout(() => {
+                setIsOpen("modal03");
+            }, 100);
         } else {
             return;
         }
@@ -56,7 +60,7 @@ export default function WorksMain() {
 
                         <WorksCard02 onClick={() => setIsOpen("modal02")} />
 
-                        <WorksCard03 />
+                        <WorksCard03 onClick={() => setIsOpen("modal03")} />
                     </div>
                 </div>
             </div>

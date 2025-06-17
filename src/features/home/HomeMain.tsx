@@ -171,6 +171,33 @@ export default function HomeMain() {
                                     </div>
                                 </div>
                             </li>
+
+                            <li>
+                                {/*更新履歴3 制作実績にtodolist追加*/}
+                                <div className="flex flex-row pt-4">
+                                    {/*縦線|*/}
+                                    <svg
+                                        className={`size-10 stroke-3 stroke-[var(--color-primary)] dark:stroke-[var(--color-dark-primary)] my-auto`}
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="24"
+                                        height="24"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <title> </title>
+                                        <line x1="16" y1="0" x2="16" y2="24" />
+                                    </svg>
+                                    <div className="w-full mr-5">
+                                        <p className="text-sm text-[var(--color-primary)]">
+                                            <CalendarDays className="inline-block size-4 mb-1 mr-1" />
+                                            2025.06.17
+                                        </p>
+
+                                        <p className=" border-b-1 border-[var(--color-primary)]">
+                                            製作実績に「タスク管理アプリ」を追加しました。
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
                         </ol>
                     </div>
                 </div>

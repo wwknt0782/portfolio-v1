@@ -108,16 +108,16 @@ export const WorksCard02 = (props: WorksCardsType) => {
     );
 };
 
-//制作実績カード3　データなし
-export const WorksCard03 = (/*props: WorksCardsType*/) => {
+//制作実績カード3　タスク管理アプリ
+export const WorksCard03 = (props: WorksCardsType) => {
     return (
         <button
             type="button"
-            /*onClick={props.onClick}*/
-            className="{`${/*group cursor-pointer*/}`} relative flex flex-col h-full text-left border border-works-text/20 shadow-md 
+            onClick={props.onClick}
+            className="group relative flex flex-col h-full text-left border border-works-text/20 shadow-md 
 						focus:outline-hidden focus:border-transparent focus:shadow-lg 
 						transition-all duration-300 
-						rounded-md p-5 "
+						rounded-md p-5 cursor-pointer"
         >
             <div
                 className="z-1 absolute flex justify-center items-center left-0 top-0 w-full h-full 
@@ -133,23 +133,25 @@ export const WorksCard03 = (/*props: WorksCardsType*/) => {
             <div className="">
                 <Image
                     className="w-full aspect-16/9 object-cover rounded-md group-hover:scale-103 transition-all duration-300 ease-out"
-                    src="/flat.jpg"
-                    alt="in production"
-                    width="160"
-                    height="90"
+                    src="/img_todolist.jpg"
+                    alt="To Do Application"
+                    width="400"
+                    height="225"
                     priority={true}
                 />
             </div>
 
             <div>
-                <h5 className="mt-3 text-sm text-[var(--color-works-primary)]">
-                    #Webサイト
+                <h5 className="mt-3 text-sm text-[var(--color-contact-primary)]">
+                    #Webアプリ
                 </h5>
             </div>
 
-            <div className="mt-6">
-                <h3 className="text-xl font-bold">制作中...</h3>
-                <p className="mt-5"></p>
+            <div className="mt-4">
+                <h3 className="text-xl font-bold">タスク管理アプリ</h3>
+                <p className="mt-5">
+                    シンプルなタスク管理アプリです。タスクの追加，編集，完了チェック，削除が可能です。ページをリロードしても情報が保存されます。
+                </p>
             </div>
         </button>
     );
