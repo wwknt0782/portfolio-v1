@@ -64,7 +64,12 @@ export default function HomeMain() {
                                     <WorksCard02 />
                                 </AnimatedLink>
 
-                                <WorksCard03 />
+                                <AnimatedLink
+                                    href="/works?from=home&to=modal03"
+                                    className="flex flex-col grow"
+                                >
+                                    <WorksCard03 />
+                                </AnimatedLink>
                             </div>
                         </div>
 
