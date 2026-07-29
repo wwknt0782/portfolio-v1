@@ -155,7 +155,7 @@ export default function Home() {
                                 <PageTransitionButton
                                     type="button"
                                     buttonName="送信する"
-                                    onClick={sendForm}
+                                    //onClick={sendForm}
                                     theme="contact"
                                 />
                             </div>
