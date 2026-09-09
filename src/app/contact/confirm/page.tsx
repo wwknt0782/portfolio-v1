@@ -10,55 +10,33 @@ import { useFormStore } from "@/store/FormStore";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { sendContactForm } from "@/lib/contactApi";
 
 export default function Home() {
     const [msg, setMsg] = useState("");
     const router = useRouter();
-    const url =
-        (process.env.NEXT_PUBLIC_BASE_URL as string) ||
-        "http://localhost:3000/api/send"; //send APIのURL
     const { data } = useFormStore(); //zustandに保存したデータを取得
 
     //送信ボタンが押されたらフォームデータを送信===================================================
     const sendForm = async () => {
         try {
-            //send APIにアクセスしてメール送信------------------------------------------------
-            const response = await fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    name: data.name,
-                    company: data.company,
-                    email: data.email,
-                    text: data.text,
-                }),
+            await sendContactForm({
+                name: data.name,
+                companyName: data.company,
+                email: data.email,
+                message: data.text,
             });
 
-            //異常終了(サーバーエラー)--------------------------------------------------------
-            if (!response.ok) {
-                setMsg(
-                    "フォームの送信に失敗しました。しばらく時間をあけてから，再度お試しください。"
-                );
-                throw new Error(
-                    "サーバーにエラーがあります: " + response.status
-                );
-            } //-----------------------------------------------------------------------------
-
-            //正常終了-----------------------------------------------------------
-            const result = await response.json();
-            console.log("送信結果: " + result);
             setMsg(""); //エラーメッセージ削除
             await router.push("/contact/complete"); //送信完了ページに遷移
-            //------------------------------------------------------------------
         } catch (error) {
-            //異常終了(その他)---------------------------------------------------
             setMsg(
-                "フォームの送信に失敗しました。しばらく時間をあけてから，再度お試しください。"
+                "フォームの送信に失敗しました。しばらく時間をあけてから再度お試しください。"
             );
             console.error(
                 "ネットワークまたはデータにエラーがあります: ",
                 error
-            ); //---------------------------------------------------------------
+            );
         }
     };
 
@@ -155,7 +133,7 @@ export default function Home() {
                                 <PageTransitionButton
                                     type="button"
                                     buttonName="送信する"
-                                    //onClick={sendForm}
+                                    onClick={sendForm}
                                     theme="contact"
                                 />
                             </div>
