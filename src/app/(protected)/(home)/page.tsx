@@ -6,7 +6,7 @@ import HomeMain from "@/features/home/HomeMain";
 
 export default function Home() {
     return (
-        <div>
+        <>
             <Header />
             {/*ヘッダー*/}
 
@@ -15,6 +15,6 @@ export default function Home() {
 
             <Footer />
             {/*フッター*/}
-        </div>
+        </>
     );
 }

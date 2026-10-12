@@ -1,9 +1,13 @@
 import BreadCrumb from "@/components/BreadCrumb";
 
-export default function Footer() {
+type FooterProps = {
+showBreadCrumb?: boolean
+}
+
+export default function Footer({showBreadCrumb = true}: FooterProps) {
     return (
         <footer className="bottom-0 w-ful mt-20">
-            <BreadCrumb />
+            {showBreadCrumb && <BreadCrumb />}
             {/*パンくずリスト*/}
             <div className="flex items-center justify-center h-15 ">
                 <p className="text-center">

@@ -2,7 +2,11 @@ import { ibmPlexMono } from "@/fonts/Fonts";
 import GlobalNav from "@/components/GlobalNav";
 import { AnimatedLink } from "./PageTransition";
 
-export default function Header() {
+type HeaderProps = {
+    showGlobalNav?: boolean;
+}
+
+export default function Header({showGlobalNav = true}: HeaderProps) {
     return (
         <header
             className="w-full h-16 pl-4 md:px-10 lg:px-20 fixed top-0 z-10
@@ -22,7 +26,7 @@ export default function Header() {
                         </h1>
                     </AnimatedLink>
                 </div>
-                <GlobalNav />
+                {showGlobalNav && <GlobalNav />}
             </nav>
         </header>
     );

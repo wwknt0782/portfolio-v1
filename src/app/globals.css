@@ -48,6 +48,13 @@ body {
     font-style: normal;
 }
 
+div[data-page] {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
 div[data-page="home"],
 .theme-404 {
     --color-primary: var(--color-home-primary);

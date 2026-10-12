@@ -1,30 +1,54 @@
 // use Preline UI  "https://preline.co/docs/license.html"
 "use client";
 
+import { useRouter } from "next/navigation";
 import HoverArrowButton from "./HoverArrowButton";
+import { useAuthStore } from "@/features/auth/auth-store";
 
 export default function GlobalNav() {
+    const router = useRouter();
+    const logout = useAuthStore((state) => state.logout);
+    const handleLogout = () => {
+        logout();
+    };
     return (
         <div>
             <div className="hidden md:block">
                 {/*PC版表示*/}
                 <ul className="flex flex-row items-center space-x-2 my-1">
                     <li>
-                        <HoverArrowButton buttonName="HOME" link="/" />
+                        <HoverArrowButton
+                            buttonName="HOME"
+                            page="/"
+                            onClick={() => router.push("/")}
+                        />
                     </li>
                     <li>
                         <HoverArrowButton
                             buttonName="プロフィール"
-                            link="/profile"
+                            page="/profile"
+                            onClick={() => router.push("/profile")}
                         />
                     </li>
                     <li>
-                        <HoverArrowButton buttonName="制作実績" link="/works" />
+                        <HoverArrowButton
+                            buttonName="制作実績"
+                            page="/works"
+                            onClick={() => router.push("/works")}
+                        />
                     </li>
                     <li>
                         <HoverArrowButton
                             buttonName="お問い合わせ"
-                            link="/contact"
+                            page="/contact"
+                            onClick={() => router.push("/contact")}
+                        />
+                    </li>
+                    <li>
+                        <HoverArrowButton
+                            buttonName="ログアウト"
+                            page="/"
+                            onClick={handleLogout}
                         />
                     </li>
                 </ul>
@@ -77,24 +101,38 @@ export default function GlobalNav() {
                 >
                     <ul>
                         <li>
-                            <HoverArrowButton buttonName="HOME" link="/" />
+                            <HoverArrowButton
+                                buttonName="HOME"
+                                page="/"
+                                onClick={() => router.push("/")}
+                            />
                         </li>
                         <li>
                             <HoverArrowButton
                                 buttonName="プロフィール"
-                                link="/profile"
+                                page="/profile"
+                                onClick={() => router.push("/profile")}
                             />
                         </li>
                         <li>
                             <HoverArrowButton
                                 buttonName="制作実績"
-                                link="/works"
+                                page="/works"
+                                onClick={() => router.push("/works")}
                             />
                         </li>
                         <li>
                             <HoverArrowButton
                                 buttonName="お問い合わせ"
-                                link="/contact"
+                                page="/contact"
+                                onClick={() => router.push("/contact")}
+                            />
+                        </li>
+                        <li>
+                            <HoverArrowButton
+                                buttonName="ログアウト"
+                                page="/contact"
+                                onClick={handleLogout}
                             />
                         </li>
                     </ul>
