@@ -2,19 +2,23 @@
 import { usePathname } from "next/navigation";
 import { AnimatedLink } from "./PageTransition";
 
-export default function HoverArrowButton(props: {
+export type HoverArrowButtonProps = {
     buttonName: string;
-    link: string;
-}) {
+    page: String;
+    onClick: () => void;
+};
+
+export default function HoverArrowButton(props: HoverArrowButtonProps) {
     const isHere = usePathname().split("/").filter(Boolean); //今いるページの先頭のパスを取得(home or profile of works or contact)
     const color =
-        props.link === `/${isHere[0] ?? ""}`
+        props.page === `/${isHere[0] ?? ""}`
             ? "stroke-[var(--color-primary)] dark:stroke-[var(--color-dark-primary)]"
             : "stroke-[var(--color-text)] dark:stroke-[var(--color-dark-text)]"; //今いるページの縦線だけテーマカラーにする
 
     return (
-        <AnimatedLink
-            href={props.link}
+        <button
+            type="button"
+            onClick={props.onClick}
             className="group flex flex-row pr-2 py-1 whitespace-nowrap"
         >
             {/*縦線|---------------------------------------------------*/}
@@ -48,6 +52,6 @@ export default function HoverArrowButton(props: {
                 <line x1="14" y1="4" x2="24" y2="12" />
                 <line x1="24" y1="12" x2="14" y2="20" />
             </svg>
-        </AnimatedLink>
+        </button>
     );
 }
