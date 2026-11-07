@@ -56,6 +56,7 @@ div[data-page] {
 }
 
 div[data-page="home"],
+div[data-page="login"],
 .theme-404 {
     --color-primary: var(--color-home-primary);
     --color-secondary: var(--color-home-secondary);

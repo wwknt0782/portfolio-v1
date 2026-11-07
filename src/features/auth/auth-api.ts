@@ -1,105 +1,43 @@
-import { fetcher } from "@/lib/fetcher";
+import { fetcher, UnauthorizedPolicy } from "@/lib/fetcher";
 import type {
-    LoginRequest,
-    LoginResponse,
-    ApiErrorResponse,
+    LoginCredentials,
     AuthUser,
-    VerifyMfaRequest,
     AuthStateResponse,
 } from "./auth-types";
-import { API_BASE_URL } from "@/config/api";
 
-// 管理者ログイン
-export async function loginApi(data: LoginRequest): Promise<LoginResponse> {
-    return fetcher<LoginResponse>("/auth/admin/login", {
+// ログイン
+export async function loginApi(data: LoginCredentials): Promise<void> {
+    await fetcher<unknown>("/auth/login", {
         method: "POST",
         body: JSON.stringify(data),
+        // もともと認証されていないので何もしない
+        unauthorized: "ignore",
     });
 }
 
 // 認証状態取得
 export async function getAuthState(): Promise<AuthStateResponse> {
-    return fetcher<AuthStateResponse>("/auth/admin/status");
+    return fetcher<AuthStateResponse>("/auth/status", {
+        // 認証状態の破棄はrestoreAuth()で実施する
+        unauthorized: "ignore",
+    });
 }
 
-// ログイン中ユーザー取得
-export async function getAuthenticatedUser(): Promise<AuthUser> {
-    return fetcher<AuthUser>("/auth/admin/me");
+// ユーザー情報取得
+export async function getAuthenticatedUser(
+    unauthorized: UnauthorizedPolicy = "invalidate",
+): Promise<AuthUser> {
+    return fetcher<AuthUser>("/auth/me", {
+        // 呼び出しもとによって401の処理が変わるので引数に指定
+        unauthorized: unauthorized,
+    });
 }
 
 // ログアウト
 export async function logoutApi(): Promise<void> {
     await fetcher<void>("/auth/logout", {
         method: "POST",
+        // 401が帰ってきても再度ログアウト処理をしない
+        unauthorized: "ignore",
     });
-}
-
-// MFA検証
-export async function verifyMfa(data: VerifyMfaRequest): Promise<void> {
-    await fetcher<void>("/mfa/verify-mfa", {
-        method: "POST",
-        body: JSON.stringify(data),
-    });
-}
-
-//
-
-// ログインリクエスト
-export async function requestLogin(
-    request: LoginRequest,
-): Promise<LoginResponse> {
-    const response = await fetch(API_BASE_URL + "/auth/login", {
-        method: "POST",
-        credentials: "include",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(request),
-    });
-
-    // ステータスに応じたエラーメッセージを出力する
-    if (!response.ok) {
-        const serverMessage = await readErrorMessage(response);
-        throw new LoginApiError(
-            getDefaultMessage(response.status),
-            response.status,
-        );
-    }
-    return (await response.json()) as LoginResponse;
-}
-
-// ログインAPI専用エラークラス
-export class LoginApiError extends Error {
-    public readonly status: number;
-    constructor(message: string, status: number) {
-        super(message);
-        this.name = "LoginApiError";
-        this.status = status;
-    }
-}
-
-// レスポンスからエラーメッセージを取得する
-async function readErrorMessage(
-    response: Response,
-): Promise<string | undefined> {
-    try {
-        const body = (await response.json()) as ApiErrorResponse;
-        return body.message;
-    } catch {
-        return undefined;
-    }
-}
-
-// エラーごとに基本のメッセージを定義
-function getDefaultMessage(status: number): string {
-    switch (status) {
-        case 400:
-            return "入力内容を確認してください。";
-        case 401:
-            return "ユーザーIDまたはパスワードが違います。";
-        case 429:
-            return "ログイン試行回数が多すぎます。時間をおいて再度お試しください。";
-        default:
-            return "ログイン処理に失敗しました。";
-    }
 }

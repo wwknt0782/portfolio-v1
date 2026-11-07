@@ -1,6 +1,5 @@
 //ルートレイアウト サイト全体の仕様をここに記述
 "use client";
-import type { Metadata } from "next";
 import "~/globals.css";
 
 import PrelineScriptWrapper from "@/components/PrelineScriptWrapper"; //Preline UI
@@ -29,19 +28,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
     // 認証処理
     const restoreAuth = useAuthStore((state) => state.restoreAuth);
-    const currentUser = useAuthStore((state) => state.refreshCurrentUser);
-    const {
-        user,
-        isAuthenticated,
-        isLoading,
-        isLoggingOut,
-        isMfaRequired,
-        isRestoring,
-    } = useAuthStore();
+    const { user, isAuthenticated, isLoggingIn, isLoggingOut, isRestoring } =
+        useAuthStore();
     useEffect(() => {
         void restoreAuth();
-        void currentUser();
-    }, [restoreAuth, currentUser]);
+    }, [restoreAuth]);
 
     return (
         <html
@@ -53,15 +44,6 @@ export default function RootLayout({
             text-[var(--color-home-text)] dark:text-[var(--color-home-dark-text)]
             bg-[var(--color-home-secondary)] dark:bg-[var(--color-home-dark-secondary)]"
             >
-                <div className="z-10000 bg-white">
-                    <p>user: {String(user?.userName)}</p>
-                    <p>isAuthenticated: {String(isAuthenticated)}</p>
-                    <p>isLoading: {String(isLoading)}</p>
-                    <p>isRestoring: {String(isRestoring)}</p>
-                    <p>isLoggingOut: {String(isLoggingOut)}</p>
-                    <p>isMfaRequired: {String(isMfaRequired)}</p>
-                </div>
-
                 {children}
             </body>
 
