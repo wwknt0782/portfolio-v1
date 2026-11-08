@@ -3,14 +3,22 @@ import PageTitle from "@/components/PageTitle";
 import PageTransitionButton from "@/components/PageTransitionButton";
 
 import { type FormData, FormSchema } from "@/constants/FormSchema";
-import { useFormStore } from "@/store/FormStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Form from "next/form";
 import { useRouter } from "next/navigation";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { useContactStore } from "./contact-store";
+import { ContactPayload } from "./contact-types";
 
 export default function ContactMain() {
-    const { data, setData } = useFormStore();
+    const contactPayload = useContactStore((state) => state.contactPayload);
+    const isSubmitting = useContactStore((state) => state.isSubmitting);
+    const submitContact = useContactStore((state) => state.submitContact);
+    const setForm = useContactStore((state) => state.setForm);
+    const clearForm = useContactStore((state) => state.clearForm);
+    const contactStep = useContactStore((state) => state.contactStep);
+    const setContactStep = useContactStore((state) => state.setContactStep);
+
     const router = useRouter();
 
     //React-hook-formの設定-----------------------------------------------
@@ -20,20 +28,19 @@ export default function ContactMain() {
         formState: { errors },
     } = useForm({
         defaultValues: {
-            name: data.name,
-            company: data.company,
-            email: data.email,
-            text: data.text,
+            name: contactPayload.name,
+            companyName: contactPayload.companyName,
+            email: contactPayload.email,
+            message: contactPayload.message,
         },
         resolver: zodResolver(FormSchema), //zodバリデーション
     });
     //----------------------------------------------------------------------------
 
     //フォームがSubmitされたらzustandでデータを保存して確認ページへ遷移----------------
-    const onSubmit: SubmitHandler<FormData> = (newData) => {
-        //SubmitHandlerはReact-hook-formの型指定
-        //StoreData(newData);
-        setData(newData); //zustandでフォームデータ保存
+    const onSubmit: SubmitHandler<ContactPayload> = (newData) => {
+        setForm(newData);
+        setContactStep("confirm");
         router.push("/contact/confirm"); //確認ページに遷移
     };
     //-----------------------------------------------------------------------------
@@ -98,15 +105,15 @@ export default function ContactMain() {
                             <input
                                 type="text"
                                 id="company"
-                                {...register("company")}
+                                {...register("companyName")}
                                 placeholder=""
                                 className="border-2 border-[var(--color-primary)]/40 rounded-md p-2"
                             />
                             <div>
                                 {/*エラーメッセージ*/}
-                                {errors.company && (
+                                {errors.companyName && (
                                     <p className="text-red-600">
-                                        {errors.company.message}
+                                        {errors.companyName.message}
                                     </p>
                                 )}
                             </div>
@@ -151,14 +158,14 @@ export default function ContactMain() {
                             </label>
                             <textarea
                                 id="text"
-                                {...register("text")}
+                                {...register("message")}
                                 className="h-[176px] border-2 border-[var(--color-primary)]/40 rounded-md p-2 leading-5"
                             />
                             <div>
                                 {/*エラーメッセージ*/}
-                                {errors.text && (
+                                {errors.message && (
                                     <p className="text-red-600">
-                                        {errors.text.message}
+                                        {errors.message.message}
                                     </p>
                                 )}
                             </div>
