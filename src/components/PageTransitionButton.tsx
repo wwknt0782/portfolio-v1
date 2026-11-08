@@ -5,6 +5,7 @@ import clsx from "clsx";
 
 type props = {
     type: "submit" | "reset" | "button" | undefined;
+    disabled?: boolean;
     buttonName: string;
     theme: keyof typeof PageList;
     onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void; //親にonClickを渡す
@@ -23,12 +24,13 @@ export default function PageTransitionButton(props: props) {
                 props.theme === "works",
             "bg-[var(--color-contact-primary)] dark:bg-[var(--color-contact-dark-primary)] border-[var(--color-contact-text)]/20 dark:border-[var(--color-contact-dark-text)]/20 text-[var(--color-contact-secondary)] dark:text-[var(--color-contact-dark-text)]":
                 props.theme === "contact",
-        }
+        },
     );
 
     return (
         <button
             type={props.type}
+            disabled={props.disabled}
             onClick={props.onClick}
             className={buttonStyle}
         >
