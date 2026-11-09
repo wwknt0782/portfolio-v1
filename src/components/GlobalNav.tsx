@@ -47,7 +47,7 @@ export default function GlobalNav() {
                     <li>
                         <HoverArrowButton
                             buttonName="ログアウト"
-                            page="/"
+                            page=""
                             onClick={handleLogout}
                         />
                     </li>
@@ -131,7 +131,7 @@ export default function GlobalNav() {
                         <li>
                             <HoverArrowButton
                                 buttonName="ログアウト"
-                                page="/contact"
+                                page=""
                                 onClick={handleLogout}
                             />
                         </li>

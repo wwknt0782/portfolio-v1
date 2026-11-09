@@ -1,66 +1,40 @@
 import { create } from "zustand";
-import { AuthState } from "./auth-types";
+import { AuthStore } from "./auth-types";
 import {
     getAuthenticatedUser,
     getAuthState,
     loginApi,
     logoutApi,
-    verifyMfa,
 } from "./auth-api";
+import { setUnauthorizedHandler } from "@/lib/fetcher";
+import { ApiError } from "./api-error";
 
-export const useAuthStore = create<AuthState>((set, get) => ({
+// 認証のバージョン管理用
+let authVersion = 0;
+// 実行中認証処理を保持
+let restorePromise: Promise<void> | null = null;
+
+export const useAuthStore = create<AuthStore>((set, get) => ({
     user: null,
     isAuthenticated: false,
-    isLoading: false,
+    isLoggingIn: false,
     isRestoring: true,
     isLoggingOut: false,
-    isMfaRequired: false,
+    restoreError: null,
 
     login: async (data) => {
         // 通常ログイン
-        set({ isLoading: true });
+        set({ isLoggingIn: true });
 
         try {
-            const response = await loginApi(data);
-            // 二段階認証が必要な場合
-            if (response.mfaRequired) {
-                set({
-                    user: null,
-                    isAuthenticated: false,
-                    isMfaRequired: true,
-                });
-                return { isMfaRequired: true };
-            }
-            // 二段階認証が不要な場合
-            const user = await getAuthenticatedUser();
+            await loginApi(data);
+            const user = await getAuthenticatedUser("ignore");
             set({
                 user: user,
                 isAuthenticated: true,
-                isMfaRequired: false,
             });
         } finally {
-            set({ isLoading: false });
-        }
-
-        return { isMfaRequired: false };
-    },
-    verifyMfaAndLogin: async (data) => {
-        // 二段階認証コードをバックエンドで認証してログイン
-        set({
-            isLoading: true,
-        });
-        try {
-            await verifyMfa(data);
-            const user = await getAuthenticatedUser();
-            set({
-                user: user,
-                isAuthenticated: true,
-                isMfaRequired: false,
-            });
-        } finally {
-            set({
-                isLoading: false,
-            });
+            set({ isLoggingIn: false });
         }
     },
     logout: async () => {
@@ -68,7 +42,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         if (get().isLoggingOut) {
             return;
         }
-
+        authVersion += 1;
         set({ isLoggingOut: true });
         try {
             await logoutApi();
@@ -76,70 +50,128 @@ export const useAuthStore = create<AuthState>((set, get) => ({
             set({
                 user: null,
                 isAuthenticated: false,
-                isMfaRequired: false,
                 isLoggingOut: false,
+                isRestoring: false, // restoreAuthが途中で打ち切られた場合のため
+                restoreError: null,
             });
         }
     },
-    restoreAuth: async () => {
-        // ページリロード時の認証状態再問合わせ
-        set({ isRestoring: true });
-        try {
-            const authStatus = await getAuthState();
-            // 認証されている場合
-            if (
-                authStatus.authenticated /*&&
+    restoreAuth: () => {
+        // 復元処理が実行中ならそのPromiseを返す(復元を重複実行しない)
+        if (restorePromise) {
+            return restorePromise;
+        }
+
+        // 復元処理を開始してPromiseを保存する
+        restorePromise = (async (): Promise<void> => {
+            const version = authVersion;
+            // ページリロード時の認証状態再問合わせ
+            set({ isRestoring: true, restoreError: null });
+            try {
+                const authStatus = await getAuthState();
+                // リクエスト中にログアウト処理によってauthVersionが変わっていたら終了
+                if (version != authVersion) {
+                    return;
+                }
+                // 認証されている場合
+                if (
+                    authStatus.authenticated /*&&
                 authStatus.status === "AUTHENTICATED"*/
-            ) {
-                const user = await getAuthenticatedUser();
-                set({
-                    user: user,
-                    isAuthenticated: true,
-                    isMfaRequired: false,
-                });
-                console.log("認証状態：ログイン中");
-                return;
-            }
-            // MFA要求中の場合
-            if (authStatus.status === "MFA_REQUIRED") {
+                ) {
+                    const user = await getAuthenticatedUser("ignore");
+                    // リクエスト中にログアウト処理によってauthVersionが変わっていたら終了
+                    if (version != authVersion) {
+                        return;
+                    }
+                    set({
+                        user: user,
+                        isAuthenticated: true,
+                        restoreError: null,
+                    });
+
+                    return;
+                }
+                // 認証期限切れの場合
+                if (authStatus.status === "TOKEN_EXPIRED") {
+                    await get().logout();
+
+                    return;
+                }
+
+                // 未認証の場合
                 set({
                     user: null,
                     isAuthenticated: false,
-                    isMfaRequired: true,
+                    restoreError: null,
                 });
-                console.log("二段階認証を要求中");
-                return;
+            } catch (error) {
+                // 復元開始後に認証状態が変更されていたら古いリクエストの結果を反映しない
+                if (version !== authVersion) {
+                    return;
+                }
+                // 認証復元中の401は未認証として扱う
+                if (error instanceof ApiError && error.status === 401) {
+                    get().clearAuth();
+                    return;
+                }
+                // その他の失敗の時は認証状態を破棄
+                set({
+                    user: null,
+                    isAuthenticated: false,
+                    restoreError:
+                        "認証状態を確認できませんでした。通信環境を確認して再読み込みしてください。",
+                });
+            } finally {
+                // リクエスト中にログアウト処理によってauthVersionが変わっていたら終了
+                if (version === authVersion) {
+                    set({ isRestoring: false });
+                }
             }
-
-            // 認証期限切れの場合
-            if (
-                authStatus.status === "MFA_TOKEN_EXPIRED" ||
-                authStatus.status === "TOKEN_EXPIRED"
-            ) {
-                await get().logout();
-                console.log("認証期限切れ");
-                return;
-            }
-
-            // 未認証の場合
-            set({
-                user: null,
-                isAuthenticated: false,
-                isMfaRequired: false,
-            });
-            console.log("未認証");
-        } finally {
-            set({ isRestoring: false });
-        }
+        })().finally(() => {
+            // 成否によらずPromiseの参照を解除
+            restorePromise = null;
+        });
+        return restorePromise;
     },
     refreshCurrentUser: async () => {
-        // ユーザー状態再取得
+        const version = authVersion;
+        // ログイン中のみユーザー状態再取得
+        const state = get();
+        if (!state.isAuthenticated || state.isLoggingOut || state.isRestoring) {
+            return;
+        }
         const user = await getAuthenticatedUser();
-
+        // 非同期処理実行後に再度ログイン状態かどうかを確認する
+        const afterState = get();
+        if (
+            !afterState.isAuthenticated ||
+            afterState.isLoggingOut ||
+            afterState.isRestoring
+        ) {
+            return;
+        }
+        // リクエスト中にログアウト処理によってauthVersionが変わっていたら終了
+        if (version != authVersion) {
+            return;
+        }
         set({
             user: user,
-            isAuthenticated: true,
-            isMfaRequired: false,
+        });
+    },
+    clearAuth: () => {
+        // 実行中の古い認証処理を無効にする
+        authVersion += 1;
+        // ローカルの認証状態を破棄する
+        set({
+            user: null,
+            isAuthenticated: false,
+            isRestoring: false,
+            restoreError: null,
         });
     },
 }));
+
+// fetcherから直接clearAuth()を呼ぶと循環参照になるためハンドラーに登録して呼ぶ
+setUnauthorizedHandler(() => {
+    useAuthStore.getState().clearAuth();
+});

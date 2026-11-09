@@ -19,7 +19,7 @@ export default function HoverArrowButton(props: HoverArrowButtonProps) {
         <button
             type="button"
             onClick={props.onClick}
-            className="group flex flex-row pr-2 py-1 whitespace-nowrap"
+            className="group flex flex-row pr-2 py-1 whitespace-nowrap cursor-pointer"
         >
             {/*縦線|---------------------------------------------------*/}
             <svg
