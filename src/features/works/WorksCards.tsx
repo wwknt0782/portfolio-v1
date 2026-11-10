@@ -52,7 +52,8 @@ export const WorksCard01 = (props: WorksCardsType) => {
                     (本サイト)
                 </h3>
                 <p className="mt-5">
-                    ページごとのテーマカラーで色どりを与えつつ，アニメーションで気持ちのよい操作感を目指しました。
+                    Next.jsで構築したフロントエンドと、Java／Spring
+                    Bootで実装したAPIからなるポートフォリオサイトです。ログイン認証やお問い合わせ機能を実装しています。
                 </p>
             </div>
         </button>
