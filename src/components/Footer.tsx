@@ -13,7 +13,7 @@ export default function Footer({showBreadCrumb = true}: FooterProps) {
                 <p className="text-center">
                     {/*コピーライト*/}
                     <small className="whitespace-nowrap uppercase">
-                        &copy; 2025 K-Watanabe
+                        &copy; 2026 K-Watanabe
                     </small>
                 </p>
             </div>

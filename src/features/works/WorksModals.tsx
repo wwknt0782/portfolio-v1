@@ -59,17 +59,19 @@ const modalData = {
         ),
         text: (
             <>
-                ページごとのテーマカラーで色どりを与えつつ，アニメーションで気持ちのよい操作感を目指しました。ボタン等のUIはコンポーネント化して各ページで流用し，異なるテーマ色を使いながらもページ全体に統一感が出るようにしました。ページには適度な余白を持たせて見やすさを確保しています。各画面幅ごとにブレイクポイントを設定し，PC
-                ，タブレット，スマートフォンいずれのデバイスで表示しても見やすさが確保されるようにしています。お問い合わせフォームではフォーム管理全般にReact-hook-form，データの保存にzustand，バリデーションにzod，メール送信に外部サービスのResendを使用しています。
-                `
+                Next.js、React、TypeScriptで構築したフロントエンドと、Java、Spring
+                Bootで構築したバックエンドAPIからなるポートフォリオサイトです。ページごとにテーマカラーを設定し、共通UIをコンポーネント化することで、統一感と保守性を意識しました。また、PC、タブレット、スマートフォンに対応したレスポンシブデザインを採用しています。バックエンドにはJWT
+                Cookieを利用したログイン認証APIと、お問い合わせAPIを実装しています。お問い合わせ内容は入力値を検証したうえでPostgreSQLへ保存し、メール送信処理を行います。フロントエンドではReact
+                Hook
+                FormとZodによる入力検証、Zustandによる認証状態とフォーム状態の管理を行っています。
             </>
         ),
-        languages: <>TypeScript</>,
+        languages: <>TypeScript / Java</>,
         frameworks: (
             <>
-                Next.js/React/
-                <br className="md:hidden" />
-                TailwindCSS
+                Next.js / React / Tailwind CSS
+                <br />
+                Spring Boot / Spring Security / Spring Data JPA
             </>
         ),
         designs: <>Figma</>,

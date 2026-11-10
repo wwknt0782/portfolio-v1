@@ -2,6 +2,8 @@ import PageTitle from "@/components/PageTitle";
 import Link from "next/link";
 import Image from "next/image";
 
+const SHOW_SKILLS = false;
+
 export default function ProfileMain() {
     //現在の年齢を取得する
     const getAge = () => {
@@ -17,7 +19,7 @@ export default function ProfileMain() {
     };
 
     return (
-        <main className="grow mt-16 overflow-auto">
+        <main className="grow mt-16">
             <div className="mx-4 md:px-10 lg:px-20">
                 {/*ページタイトル===========================================================================================*/}
                 <div
@@ -95,7 +97,7 @@ export default function ProfileMain() {
                                         趣味・特技
                                     </p>
                                     <p className="text-sm ml-10">
-                                        ドライブ/デザイン・イラスト制作/模型製作(ガンプラ)/ゲーム(おもにドラゴンクエスト)
+                                        ドライブ／模型製作（ガンプラ）／ゲーム（おもにドラゴンクエスト）
                                     </p>
                                 </div>
                                 <div className="flex flex-row items-center mt-2">
@@ -110,9 +112,16 @@ export default function ProfileMain() {
                         </div>
                         <div>
                             <p className="mt-6">
-                                おもにWeb制作全般の勉強をしています。制作時には特にサイトの
-                                見やすさ， わかりやすさ， 操作の気持ちよさ
-                                にこだわっています。また、学生時代から情報工学に関する学習も進めており、学部時代にはC言語，卒業研究ではPythonを用いたデータ処理をおこなっていました。卒業後も情報系の学習を進めており，ITパスポートの資格取得に加え，現在はHTML5、CSS3，JavaScriptの学習を進めています。本サイトはNext.js，TypeScriptを用いて制作しました。
+                                現在は、React・TypeScriptを使用したフロントエンドと、Javaを使用したバックエンドで構成されるWebアプリケーション開発プロジェクトに参加しています。特にJavaによるバックエンド開発を中心に、既存コードの調査や機能の実装を通して、Web
+                                APIやサーバーサイド処理への理解を深めています。
+                            </p>
+                            <p className="mt-4">
+                                現職への入社後、最初の3か月間はUnity・C#を使用した開発にも携わりました。その後は現在のプロジェクトに参加し、React・TypeScript・Javaを使用した開発に取り組んでいます。
+                            </p>
+                            <p className="mt-4">
+                                本ポートフォリオサイトでも、フロントエンドをNext.js・React・TypeScript、バックエンドAPIをJava・Spring
+                                Bootで実装しました。JWT
+                                Cookieによる認証、お問い合わせ内容のデータベース保存、メール送信などを実装し、業務と個人開発の両方を通してJavaを中心としたWebアプリケーション開発の経験を積んでいます。
                             </p>
                         </div>
                     </div>
@@ -131,18 +140,18 @@ export default function ProfileMain() {
                         <p className="text-left">
                             これまでの経歴を時系列で表示しています。
                         </p>
-                        <div className="flex flex-row justify-center pt-10">
-                            <div className="">
+                        <div className="flex w-full flex-row justify-center pt-10">
+                            <div className="shrink-0">
                                 {/*縦ライン*/}
                                 <svg
-                                    className={`h-200 w-20 stroke-4 stroke-[var(--color-text)] dark:stroke-[var(--color-dark-text)] px-0 pt-3`}
+                                    className={`h-245 w-20 stroke-4 stroke-[var(--color-text)] dark:stroke-[var(--color-dark-text)] px-0 pt-3`}
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="80"
-                                    height="800"
-                                    viewBox="0 0 80 800"
+                                    height="980"
+                                    viewBox="0 0 80 980"
                                 >
                                     <title> </title>
-                                    <line x1="20" y1="3" x2="20" y2="800" />
+                                    <line x1="20" y1="3" x2="20" y2="980" />
                                     {/*縦軸*/}
                                     <line x1="0" y1="3" x2="200" y2="3" />
                                     {/*補助線*/}
@@ -156,15 +165,17 @@ export default function ProfileMain() {
                                     {/*補助線*/}
                                     <line x1="0" y1="750" x2="200" y2="750" />
                                     {/*補助線*/}
-                                    <line x1="20" y1="800" x2="30" y2="780" />
+                                    <line x1="0" y1="870" x2="200" y2="870" />
+                                    {/*補助線*/}
+                                    <line x1="20" y1="980" x2="30" y2="960" />
                                     {/*矢印*/}
-                                    <line x1="20" y1="800" x2="10" y2="780" />
+                                    <line x1="20" y1="980" x2="10" y2="960" />
                                     {/*矢印*/}
                                 </svg>
                             </div>
 
                             {/*テキスト*/}
-                            <div className="relative flex flex-col pl-3 md:pl-10 w-100">
+                            <div className="relative flex min-w-0 max-w-100 flex-1 flex-col pl-3 md:pl-10">
                                 <div className="absolute top-0">
                                     <p className=" text-2xl text-[var(--color-primary)]">
                                         1998年
@@ -274,13 +285,32 @@ export default function ProfileMain() {
                                         </ul>
                                     </div>
                                 </div>
+                                <div className="absolute top-218">
+                                    <p className="text-2xl text-[var(--color-primary)]">
+                                        2025年9月
+                                    </p>
+                                    <div className="px-2 md:px-5 border-1 border-[var(--color-primary)]/30">
+                                        <p className="text-sm md:text-lg pb-1">
+                                            現職へ入社（在職中）
+                                        </p>
+                                        <ul className="text-xs md:text-md list-disc pl-5">
+                                            <li>
+                                                入社後3か月間、Unity・C#を使用した開発に携わる。
+                                            </li>
+                                            <li>
+                                                現在はReact・TypeScript・Javaで構成されるWebアプリケーション開発プロジェクトに参加する。
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 {/*スキル===========================================================================================*/}
-                <div className=" mt-20 relative">
+                {SHOW_SKILLS && (
+                    <div className=" mt-20 relative">
                     <h2 className="text-2xl border-b-1 w-full text-left mb-5">
                         <span className="text-3xl">ス</span>キル
                     </h2>
@@ -466,7 +496,8 @@ export default function ProfileMain() {
                             <Link href="https://icons8.jp/">ICON8</Link>
                         </p>
                     </div>
-                </div>
+                    </div>
+                )}
                 {/*スキル*/}
             </div>
         </main>
